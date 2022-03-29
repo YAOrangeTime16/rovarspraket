@@ -1,34 +1,24 @@
-interface IObjectBase {
-  [key: string]: string | number | boolean | null | undefined;
-}
+
 export type TCategory = 'Any' | 'Programming' | 'Misc' | 'Dark' | 'Pun' | 'Spooky' | 'Christmas';
 
-export interface IButtonProps {
-  label: string;
-  bgClass: string;
-  type?: string;
-  onClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export interface IJokeResponseData extends IObjectBase {
-  error: boolean;
+export interface IJokeResponseData {
   category: TCategory;
-  type: string;
-  setup?: string;
+  error: boolean;
   flags?: any;
-  safe: boolean;
   id: number;
   lang: string;
+  message: string;
+  safe: boolean;
+  setup: string;
+  type: string;
 }
 
-export interface IJokeResponseError extends IObjectBase {
+export interface IJokeResponseError extends IJokeResponseData {
   additionalInfo: string;
   code: number;
-  message: string;
   timestamp: number;
 }
 
-export interface IInputProps {
-  value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+export interface IErrorProps {
+  message: string;
 }

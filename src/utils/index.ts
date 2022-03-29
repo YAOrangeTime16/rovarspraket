@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { IJokeResponseData, IJokeResponseError, TCategory } from '../typings';
 
-const vowels = ['a', 'e', 'i', 'o', 'u'];
+const vowels = ['a', 'e', 'i', 'o', 'u', 'å', 'ä', 'ö'];
 const simbols = ['.', ',', '\'', '?', '/'];
 const intact = [...vowels, ...simbols]
 
-export function EncodeText(inputText: string) {
-  // In case the input text is a sentence, it splits by word space and saves every word in an array.
+export function EncodeText(inputText: string): string {
+  // Even though the text has several words or sentences, it splits by word space and saves every word in an array.
   const inputAsArray: Array<string> = inputText.split(" ");
   // Iterate the array of words.
   const encodedWordsArray = inputAsArray.map((word: string) => {
@@ -24,7 +24,7 @@ export function EncodeText(inputText: string) {
   return encodedWordsArray.join(" ");
 }
 
-export function DecodeText(inputText: string) {
+export function DecodeText(inputText: string): string {
   const inputAsArray: Array<string> = inputText.split(" ");
   const decodedWordsArray = inputAsArray.map((word: string) => {
     // Lowercase.
@@ -50,7 +50,7 @@ export async function GetAJoke (category: TCategory
   return await axios.get(apiEndpoint).then(res => HandleResponse(res.data)).catch(e => e);
 }
 
-function HandleResponse(data: IJokeResponseData | IJokeResponseError) {
+function HandleResponse(data: IJokeResponseData | IJokeResponseError): string | IJokeResponseError {
   if (data.error) {
     throw data;
   }

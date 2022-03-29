@@ -1,11 +1,10 @@
 import React from 'react';
 import Form from './components/Form';
 
-import './App.css';
-
 function App() {
   return (
-    <section className="flex justify-center p-8">
+    <section className='flex flex-col justify-center p-8'>
+      <h1 className='text-2xl mb-4'>Rörvarspråket</h1>
       <Form />
     </section>
   );
